@@ -10,9 +10,9 @@ public abstract class Conta implements IConta {
     protected void imprimirInfosComuns() {
 
         System.out.printf("Titular: %s%n", this.cliente.getNome());
-        System.out.printf("Agência: %d", this.agencia);
+        System.out.printf("Agência: %d%n", this.agencia);
         System.out.printf("Conta: %d%n", this.numeroConta);
-        System.out.printf("Saldo: R$ %.2f", this.saldo);
+        System.out.printf("Saldo: R$ %.2f%n", this.saldo);
     }
     public Conta(Cliente cliente) {
         this.agencia = AgenciaPadrao;
@@ -26,12 +26,18 @@ public abstract class Conta implements IConta {
 
     @Override
     public void sacar(double valor) {
-        this.saldo -= valor;
+        if(valor > 0) {
+            this.saldo -= valor;
+        }
+        else System.out.println("O Valor informado é inválido para a operação.");
     }
 
     @Override
     public void depositar(double valor) {
-        this.saldo += valor;
+        if (valor > 0) {
+            this.saldo += valor;
+        }
+        else System.out.println("O Valor informado é inválido para a operação.");
     }
 
     @Override
